@@ -1,4 +1,4 @@
-FROM phpdockerio/php73-cli as base
+FROM phpdockerio/php73-cli
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -21,8 +21,7 @@ COPY overrides.conf /etc/php/7.3/fpm/pool.d/z-overrides.conf
 
 # PHP-FPM has really dirty logs, certainly not good for dockerising
 # The following startup script contains some magic to clean these up
-COPY php-fpm-startup /usr/bin/php-fpm
-CMD /usr/bin/php-fpm
+CMD ["/usr/sbin/php-fpm7.3", "-O" ]
 
 WORKDIR "/application"
 
