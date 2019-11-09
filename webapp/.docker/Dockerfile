@@ -12,7 +12,7 @@ RUN apt-get update \
         php7.3-mysql \
         git \
         nodejs \
-        yarn\
+        yarn \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
