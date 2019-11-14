@@ -2,18 +2,18 @@ version: '3.7'
 services:
 
     wp:
-        build: .
+        image: wordpress:php7.3-apache
         environment:
-            WORDPRESS_DB_PASSWORD: 1234
+            WORDPRESS_DB_HOST: db
+            WORDPRESS_DB_NAME: "wordpress"
+            WORDPRESS_DB_USER: root
+            WORDPRESS_DB_PASSWORD: "usersymfony"
         ports:
             - "8000:80"
 
     mysql:
         image: mysql:8.0
         container_name: serwild-wordpress-mysql
-        working_dir: /wordpress
-        volumes:
-            - .:/wordpress
         environment:
             - MYSQL_ROOT_PASSWORD=1234
             - MYSQL_DATABASE=wordpress
