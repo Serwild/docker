@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+    drupal:
+        image: drupal:8
+        ports:
+            - 83:83
+        volumes:
+            - drupal_modules:/var/www/html/modules
+            - drupal_profiles:/var/www/html/profiles
+            - drupal_themes:/var/www/html/themes
+            - drupal_sites:/var/www/html/sites
+        restart: always
+
+    mysql:
+        image: mysql:5.7
+        restart: always
+        ports:
+            - 3336:3336
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_PASSWORD: 1234
+            MYSQL_USER: root
+            MYSQL_DATABASE: drupal
+        volumes:
+            - mysql:/var/lib/mysql
+
+volumes:
+    drupal_modules:
+    drupal_profiles:
+    drupal_themes:
+    drupal_sites:
+    mysql:
